@@ -1,5 +1,9 @@
 package com.plussub;
 
+import com.google.common.base.Splitter;
+
+import java.util.List;
+
 /**
  * Created by sbreitenstein on 13/02/17.
  */
@@ -7,8 +11,10 @@ public class TblDumpToJsonLineConverter {
 
 
     public Iso639Entry convert(String line){
-
-        return null;
+        List<String> values = Splitter.on("\t").splitToList(line);
+        return new Iso639Entry(values.get(0)
+                ,values.get(1)
+                ,values.get(2));
     }
 
 }

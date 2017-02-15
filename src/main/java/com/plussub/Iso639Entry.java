@@ -1,5 +1,7 @@
 package com.plussub;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 /**
  * Created by sbreitenstein on 13/02/17.
  */
@@ -14,14 +16,18 @@ public class Iso639Entry {
         this.name = name;
     }
 
+    //iso639
+    //@JsonGetter("iso639")
     public String getValue() {
         return value;
     }
 
+    //iso639_2
     public String getValueAs2Char() {
         return valueAs2Char;
     }
 
+    //iso639Name
     public String getName() {
         return name;
     }

@@ -2,6 +2,7 @@ package com.plussub;
 
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 /**
@@ -17,7 +18,17 @@ public class TblDumpToJsonLineConverterTest {
 
         assertThat(iso639Entry.getValue(),is("aar"));
         assertThat(iso639Entry.getValueAs2Char(),is("aa"));
-        assertThat(iso639Entry.getName(),is("Afar"));
+        assertThat(iso639Entry.getName(),is("Afar, afar"));
+    }
+
+    @Test
+    public void test_line_converter_with_missing_iso639_2_properties(){
+        TblDumpToJsonLineConverter lineConverter = new TblDumpToJsonLineConverter();
+        Iso639Entry iso639Entry = lineConverter.convert("ace\t\tAchinese\t0\t0\n");
+
+        assertThat(iso639Entry.getValue(),is("ace"));
+        assertThat(iso639Entry.getValueAs2Char(),is(""));
+        assertThat(iso639Entry.getName(),is("Achinese"));
     }
 
 }
