@@ -1,5 +1,7 @@
 package com.plussub;
 
+import com.plussub.convert.Iso639Entry;
+import com.plussub.convert.TblDumpToJsonLineConverter;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.nullValue;
@@ -14,7 +16,7 @@ public class TblDumpToJsonLineConverterTest {
     @Test
     public void test_line_converter_with_all_properties(){
         TblDumpToJsonLineConverter lineConverter = new TblDumpToJsonLineConverter();
-        Iso639Entry iso639Entry = lineConverter.convert("aar\taa\tAfar, afar\t0\t0");
+        Iso639Entry iso639Entry = TblDumpToJsonLineConverter.convert("aar\taa\tAfar, afar\t0\t0\n");
 
         assertThat(iso639Entry.getValue(),is("aar"));
         assertThat(iso639Entry.getValueAs2Char(),is("aa"));
@@ -24,7 +26,7 @@ public class TblDumpToJsonLineConverterTest {
     @Test
     public void test_line_converter_with_missing_iso639_2_properties(){
         TblDumpToJsonLineConverter lineConverter = new TblDumpToJsonLineConverter();
-        Iso639Entry iso639Entry = lineConverter.convert("ace\t\tAchinese\t0\t0\n");
+        Iso639Entry iso639Entry = TblDumpToJsonLineConverter.convert("ace\t\tAchinese\t0\t0\n");
 
         assertThat(iso639Entry.getValue(),is("ace"));
         assertThat(iso639Entry.getValueAs2Char(),is(""));

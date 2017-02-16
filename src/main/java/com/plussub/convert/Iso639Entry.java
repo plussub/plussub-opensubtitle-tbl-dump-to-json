@@ -1,4 +1,4 @@
-package com.plussub;
+package com.plussub.convert;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
