@@ -16,10 +16,19 @@ public class Iso639Entry {
         this.name = name;
     }
 
-    //iso639
-    //@JsonGetter("iso639")
+    @JsonGetter("iso639")
     public String getValue() {
         return value;
+    }
+
+    @JsonGetter("iso639_2")
+    public String getValueAs2Char() {
+        return valueAs2Char;
+    }
+
+    @JsonGetter("iso639Name")
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -29,15 +38,5 @@ public class Iso639Entry {
                 ", valueAs2Char='" + valueAs2Char + '\'' +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    //iso639_2
-    public String getValueAs2Char() {
-        return valueAs2Char;
-    }
-
-    //iso639Name
-    public String getName() {
-        return name;
     }
 }

@@ -1,5 +1,6 @@
 package com.plussub;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Lists;
 import com.plussub.convert.TblDumpToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class TblDumpToJsonApplication {
 		SpringApplication.run(TblDumpToJsonApplication.class, args);
 	}
 
-	public void run(String[] args){
+	public void run(String[] args) throws JsonProcessingException {
 		System.out.print("hello world");
 		System.out.print("hello world");
 		System.out.print("hello world");

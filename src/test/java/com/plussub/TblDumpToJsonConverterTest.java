@@ -1,5 +1,6 @@
 package com.plussub;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Lists;
 import com.plussub.convert.TblDumpToJsonConverter;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ public class TblDumpToJsonConverterTest {
 
 
     @Test
-    public void test() throws JSONException {
+    public void test() throws JSONException, JsonProcessingException {
         List<String> list = Lists.newArrayList("aar\taa\tAfar, afar\t0\t0\n", "ace\t\tAchinese\t0\t0\n");
         String expected = "[{" +
                 "    \"iso639\": \"aar\"," +
@@ -31,7 +32,6 @@ public class TblDumpToJsonConverterTest {
                 "}]";
 
         String result = new TblDumpToJsonConverter().convert(list);
-
         JSONAssert.assertEquals(expected, result, false);
 
     }
