@@ -22,6 +22,15 @@ public class Iso639Entry {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "Iso639Entry{" +
+                "value='" + value + '\'' +
+                ", valueAs2Char='" + valueAs2Char + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     //iso639_2
     public String getValueAs2Char() {
         return valueAs2Char;

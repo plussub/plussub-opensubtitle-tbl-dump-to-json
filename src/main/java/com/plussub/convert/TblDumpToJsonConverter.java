@@ -1,9 +1,9 @@
 package com.plussub.convert;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -16,18 +16,14 @@ public class TblDumpToJsonConverter {
 //    private TblDumpToJsonLineConverter tblDumpToJsonLineConverter;
 //
 
-    public static class JsonUtil{
-        public static String addSelf(Iso639Entry iso639Entry){
 
-        }
-    }
-
-    public Stream<String> convert(List<String> perLine){
+    public String convert(List<String> perLine){
 
       return  perLine.stream()
-              .map(TblDumpToJsonLineConverter::convert)
-              .map(JsonUtil::addSelf);
-
+              .map(ConvertFunctions::lineToIso639)
+              .map(Iso639Entry::toString)
+//              .map(JsonConvertFunctions::writeValueAsStringWithSelfReference);
+             .collect(Collectors.joining(","));
     }
 
 }
