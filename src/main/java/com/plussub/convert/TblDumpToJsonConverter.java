@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by sbreitenstein on 15/02/17.
@@ -15,8 +16,8 @@ import java.util.stream.Collectors;
 @Component
 public class TblDumpToJsonConverter {
 
-    public String convert(List<String> perLine) throws JsonProcessingException {
-        return perLine.stream()
+    public String convert(Stream<String> perLine) throws JsonProcessingException {
+        return perLine
                 .map(TblDumpToJsonConverter::lineToIso639)
                 .map(JsonWithSelfReference::new)
                 .map(TblDumpToJsonConverter::writeAsJson)

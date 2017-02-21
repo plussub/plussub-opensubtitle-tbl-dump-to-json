@@ -40,7 +40,7 @@ public class TblDumpToJsonConverterTest {
 
 
     @Test
-    public void test() throws JSONException, JsonProcessingException {
+    public void convert_lines_to_json() throws JSONException, JsonProcessingException {
         List<String> list = Lists.newArrayList("aar\taa\tAfar, afar\t0\t0\n", "ace\t\tAchinese\t0\t0\n");
         String expected = "[{" +
                 "    \"iso639\": \"aar\"," +
@@ -54,7 +54,7 @@ public class TblDumpToJsonConverterTest {
                 "    \"valueField\": \"{\\\"iso639\\\":\\\"ace\\\",\\\"iso639_2\\\":\\\"\\\",\\\"iso639Name\\\":\\\"Achinese\\\"}\"" +
                 "}]";
 
-        String result = new TblDumpToJsonConverter().convert(list);
+        String result = new TblDumpToJsonConverter().convert(list.stream());
         JSONAssert.assertEquals(expected, result, false);
 
     }

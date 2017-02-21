@@ -1,37 +1,43 @@
 package com.plussub;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.collect.Lists;
+import com.google.common.io.Resources;
 import com.plussub.convert.TblDumpToJsonConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @SpringBootApplication
-public class TblDumpToJsonApplication {
+public class TblDumpToJsonApplication implements CommandLineRunner {
 
-	@Autowired
-	private TblDumpToJsonConverter tblDumpToJsonConverter;
+    @Autowired
+    private TblDumpToJsonConverter tblDumpToJsonConverter;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(TblDumpToJsonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TblDumpToJsonApplication.class, args);
+    }
 
-	public void run(String[] args) throws JsonProcessingException {
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
-		System.out.print("hello world");
+    @Override
+    public void run(String[] args) {
+        try {
 
-		System.out.print("hello world");
-
-		tblDumpToJsonConverter.convert(Lists.newArrayList("asdf"));
-	}
+            File file = new ClassPathResource("opensub_tbl_dump",this.getClass()).getFile();
+            try (Stream<String> stream = Files.lines(Paths.get(file.getPath()))) {
+                System.out.println(tblDumpToJsonConverter.convert(stream));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
