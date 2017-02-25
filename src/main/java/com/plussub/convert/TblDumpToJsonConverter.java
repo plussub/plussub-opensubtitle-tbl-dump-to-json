@@ -21,11 +21,15 @@ public class TblDumpToJsonConverter {
                 .map(TblDumpToJsonConverter::lineToIso639)
                 .map(JsonWithSelfReference::new)
                 .map(TblDumpToJsonConverter::writeAsJson)
-                .collect(Collectors.joining(",", "[", "]"));
+                .collect(TblDumpToJsonConverter.joinAsJsonArray());
+    }
+
+    private static Collector<CharSequence, ?, String> joinAsJsonArray() {
+        return  Collectors.joining(",", "[", "]");
     }
 
 
-     static Iso639Entry lineToIso639(String line){
+    static Iso639Entry lineToIso639(String line){
         List<String> values = Splitter.on("\t").splitToList(line);
         return new Iso639Entry(values.get(0)
                 ,values.get(1)
