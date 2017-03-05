@@ -1,7 +1,7 @@
 package com.plussub;
 
-import com.google.common.io.Resources;
-import com.plussub.convert.TblDumpToJsonConverter;
+import com.plussub.convert.TblDumpTo;
+import com.plussub.convert.TblDumpToJavaArrayConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 public class TblDumpToJsonApplication implements CommandLineRunner {
 
     @Autowired
-    private TblDumpToJsonConverter tblDumpToJsonConverter;
+    private TblDumpToJavaArrayConverter tblDumpToJsonConverter;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
