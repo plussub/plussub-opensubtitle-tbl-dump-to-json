@@ -23,7 +23,7 @@ public class TblDumpToJavaArrayConverter implements TblDumpTo {
     }
 
     private static Collector<CharSequence, ?, String> joinAsJavaArray() {
-        return  Collectors.joining(",", "[", "]");
+        return  Collectors.joining(",", "{", "}");
     }
 
 
